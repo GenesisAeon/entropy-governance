@@ -40,4 +40,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Ruff clean (`E, F, B, I, W, UP, C4, SIM`)
   - `uv run mkdocs build --strict` passes with no warnings
 
+**DOI**: https://doi.org/10.5281/zenodo.18962979
+
 [0.1.0]: https://github.com/GenesisAeon/entropy-governance/releases/tag/v0.1.0

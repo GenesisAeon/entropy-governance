@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "entropy-governance: Entropy-Governance Duality"
+version: 0.1.0
+date-released: "2026-03-11"
+authors:
+  - name: "GenesisAeon Team"
+    email: team@genesisaeon.org
+repository-code: "https://github.com/GenesisAeon/entropy-governance"
+license: MIT
+doi: 10.5281/zenodo.18962979
+abstract: >
+  Entropy-Governance Duality framework: S∝A (action-governed) vs S∝V
+  (volume-governed), entropic pricing, CREP and Tesseract time-slices.
+keywords:
+  - entropy
+  - governance
+  - physics
+  - duality
+  - sympy
+  - tesseract

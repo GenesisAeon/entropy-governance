@@ -112,10 +112,10 @@ If you use entropy-governance in academic work, please cite:
 
 ```
 GenesisAeon Team. (2026). entropy-governance: Entropy-Governance Duality (v0.1.0) [Software].
-Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+Zenodo. https://doi.org/10.5281/zenodo.18962979
 ```
 
-> **DOI**: 10.5281/zenodo.XXXXXXX *(update after Zenodo registration)*
+> **DOI**: 10.5281/zenodo.18962979
 > **PyPI**: `pip install entropy-governance==0.1.0`
 
 ---
