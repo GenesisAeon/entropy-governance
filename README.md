@@ -6,6 +6,7 @@ Direct bridge to `entropy-table` and optional fractal integration with `implosiv
 [![CI](https://github.com/GenesisAeon/entropy-governance/actions/workflows/ci.yml/badge.svg)](https://github.com/GenesisAeon/entropy-governance/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/entropy-governance)](https://pypi.org/project/entropy-governance/)
 
 ---
 
@@ -104,6 +105,24 @@ pre-commit install
 uv run pytest          # runs with coverage report
 uv run ruff check .
 ```
+
+## Citation
+
+If you use entropy-governance in academic work, please cite:
+
+```
+GenesisAeon Team. (2026). entropy-governance: Entropy-Governance Duality (v0.1.0) [Software].
+Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+```
+
+> **DOI**: 10.5281/zenodo.XXXXXXX *(update after Zenodo registration)*
+> **PyPI**: `pip install entropy-governance==0.1.0`
+
+---
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for the full release history.
 
 ---
 
