@@ -1,37 +1,63 @@
-# Diamond Setup
+# Entropy-Governance
 
-**Universal Python project scaffold** — generate professional, CI-ready project skeletons in seconds.
+**Entropy-Governance** is a Python framework for modelling the **S∝A / S∝V duality**, computing entropic prices, measuring cumulative relative entropy production (CREP), and running 4-D Tesseract time-slice simulations.
 
-No cookiecutter, no Jinja2, no magic. Just a clean CLI, sensible templates, and a validator that keeps your projects healthy.
+## Theoretical Background
+
+### S∝A — Action-governed minimal entropy production
+
+$$S(t) = \kappa \cdot A(t)$$
+
+Entropy is proportional to the integrated action.  This regime describes systems
+in which entropy production is *minimised* and tightly coupled to the dynamical
+action.
+
+### S∝V — Volume-governed maximal information entropy
+
+$$S(t) = \lambda \cdot \ln V(t)$$
+
+Entropy scales logarithmically with the phase-space volume.  This is the *maximal
+information entropy* regime (Boltzmann / Shannon).
+
+### Entropic Price
+
+$$P_E = \frac{\Delta S}{\Delta t} \cdot \kappa$$
+
+The instantaneous cost of entropy production, weighted by coupling constant κ.
+
+### CREP
+
+$$\text{CREP} = \frac{\int |\dot{S}|\, dt}{S_{\max}}$$
+
+A dimensionless indicator of cumulative irreversibility relative to a reference
+maximum.
 
 ## Quickstart
 
 ```bash
-pip install diamond-setup
-# or with uv:
-uv tool install diamond-setup
+pip install entropy-governance
+eg --help
 ```
 
-```bash
-diamond scaffold my-new-tool
-cd my-new-tool && uv sync --dev && uv run pytest
+```python
+from entropy_governance import entropy_price, crep, duality_factor
+import numpy as np
+
+# P_E
+print(entropy_price(2.0, 1.0, kappa=1.0))   # 2.0
+
+# CREP over a sinusoidal run
+t = np.linspace(0, 10, 1000)
+c = crep(t, np.sin(t), s_max=10.0)
+print(f"CREP = {c:.4f}")
 ```
 
-## Why Diamond Setup?
-
-| Feature | diamond-setup | cookiecutter | copier |
-|---------|:---:|:---:|:---:|
-| Zero config needed | ✅ | ❌ | ❌ |
-| Built-in validator | ✅ | ❌ | ❌ |
-| Pure Python templates | ✅ | ❌ | ❌ |
-| `--dry-run` support | ✅ | ❌ | ✅ |
-| Extensible presets | ✅ | ✅ | ✅ |
-
-## Commands
+## CLI commands
 
 | Command | Description |
 |---------|-------------|
-| `diamond scaffold <name>` | Create a new project |
-| `diamond list-templates` | Show available templates |
-| `diamond validate [path]` | Check a project's health |
-| `diamond version` | Show version |
+| `eg entropy-price ΔS Δt` | Compute entropic price |
+| `eg governance-sim` | Run simulation with Tesseract slices |
+| `eg duality A V` | Blended duality metric |
+| `eg table-export` | Export to entropy-table YAML |
+| `eg version` | Show package version |
