@@ -1,88 +1,106 @@
 # CLI Reference
 
-## `diamond scaffold`
-
-Create a new project from a template.
-
-```
-Usage: diamond scaffold [OPTIONS] PROJECT_NAME
-
-Arguments:
-  PROJECT_NAME  Name of the new project (kebab-case recommended)
-
-Options:
-  -t, --template TEXT       Template to use [default: minimal]
-  -o, --output-dir PATH     Parent directory for the new project
-  --author TEXT             Author name
-  --description TEXT        Short project description
-  --python-version TEXT     Minimum Python version (e.g. 3.11)
-  --dry-run                 Preview files without writing them
-```
-
-**Examples**
+The `eg` command is the entry-point for entropy-governance.
 
 ```bash
-# Minimal project in the current directory
-diamond scaffold my-lib
-
-# Genesis preset with custom author
-diamond scaffold my-physics-tool --template genesis --author "Ada Lovelace"
-
-# Preview what would be created
-diamond scaffold my-lib --dry-run
-
-# Output to a specific directory
-diamond scaffold my-lib --output-dir ~/projects
+eg --help
 ```
 
 ---
 
-## `diamond list-templates`
+## `eg entropy-price`
 
-List all available templates with their descriptions.
+Compute the entropic price P_E = (ΔS / Δt) · κ.
 
 ```bash
-diamond list-templates
+eg entropy-price DELTA_S DELTA_T [--kappa FLOAT]
+```
+
+| Argument / Option | Default | Description |
+|-------------------|---------|-------------|
+| `DELTA_S` | — | Change in entropy ΔS |
+| `DELTA_T` | — | Time interval Δt (must be > 0) |
+| `--kappa` / `-k` | `1.0` | Coupling constant κ |
+
+**Example:**
+
+```bash
+eg entropy-price 2.0 1.0 --kappa 1.5
+# P_E = 3.000000
 ```
 
 ---
 
-## `diamond validate`
+## `eg governance-sim`
 
-Validate a project directory against diamond-setup best practices.
-
-```
-Usage: diamond validate [PATH]
-
-Arguments:
-  PATH  Project directory to validate [default: current directory]
-```
-
-Checks performed:
-
-| Check | Level |
-|-------|-------|
-| `pyproject.toml` present | **Error** |
-| `src/` layout present | Warning |
-| `tests/` directory present | Warning |
-| `.github/workflows/` present | Warning |
-| `README.md` present | Warning |
-| `.gitignore` present | Warning |
+Run a governance simulation with Tesseract time-slices and compute CREP.
 
 ```bash
-# Validate the current directory
-diamond validate
+eg governance-sim [--steps INT] [--s-max FLOAT] [--dt FLOAT]
+```
 
-# Validate a specific project
-diamond validate path/to/my-project
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--steps` / `-n` | `100` | Number of simulation steps |
+| `--s-max` | `10.0` | Normalisation constant S_max |
+| `--dt` | `0.1` | Tesseract time step |
+
+**Example:**
+
+```bash
+eg governance-sim --steps 500 --s-max 20.0
 ```
 
 ---
 
-## `diamond version`
+## `eg duality`
 
-Print the installed version.
+Compute the blended duality metric D = α·A + (1−α)·ln(V).
 
 ```bash
-diamond version
+eg duality ACTION VOLUME [--alpha FLOAT]
+```
+
+| Argument / Option | Default | Description |
+|-------------------|---------|-------------|
+| `ACTION` | — | Action value A |
+| `VOLUME` | — | Volume V (must be > 0) |
+| `--alpha` / `-a` | `0.5` | Blend coefficient α ∈ [0, 1] |
+
+**Example:**
+
+```bash
+eg duality 3.0 2.718281828 --alpha 0.5
+# D = 2.000000
+```
+
+---
+
+## `eg table-export`
+
+Export default S∝A / S∝V relations to an entropy-table YAML file.
+
+```bash
+eg table-export [--output PATH] [--domain TEXT]
+```
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--output` / `-o` | `domains.yaml` | Output file path |
+| `--domain` / `-d` | `governance` | Domain key in the YAML |
+
+**Example:**
+
+```bash
+eg table-export --output exports/my-domain.yaml --domain physics
+```
+
+---
+
+## `eg version`
+
+Show the installed entropy-governance version.
+
+```bash
+eg version
 ```

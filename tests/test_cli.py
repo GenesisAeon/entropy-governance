@@ -108,9 +108,7 @@ class TestTableExport:
 
     def test_custom_domain(self, tmp_path):
         out = tmp_path / "export.yaml"
-        result = runner.invoke(
-            app, ["table-export", "--output", str(out), "--domain", "physics"]
-        )
+        result = runner.invoke(app, ["table-export", "--output", str(out), "--domain", "physics"])
         assert result.exit_code == 0
         data = yaml.safe_load(out.read_text())
         assert "physics" in data["domains"]
