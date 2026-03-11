@@ -61,3 +61,14 @@ print(f"CREP = {c:.4f}")
 | `eg duality A V` | Blended duality metric |
 | `eg table-export` | Export to entropy-table YAML |
 | `eg version` | Show package version |
+
+## Citation
+
+If you use entropy-governance in academic work, please cite:
+
+```
+GenesisAeon Team. (2026). entropy-governance: Entropy-Governance Duality (v0.1.0) [Software].
+Zenodo. https://doi.org/10.5281/zenodo.18962979
+```
+
+> **DOI**: 10.5281/zenodo.18962979

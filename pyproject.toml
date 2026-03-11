@@ -46,6 +46,7 @@ eg = "entropy_governance.cli:app"
 Repository = "https://github.com/GenesisAeon/entropy-governance"
 Issues = "https://github.com/GenesisAeon/entropy-governance/issues"
 Changelog = "https://github.com/GenesisAeon/entropy-governance/blob/main/CHANGELOG.md"
+DOI = "https://doi.org/10.5281/zenodo.18962979"
 
 [build-system]
 requires = ["hatchling"]
