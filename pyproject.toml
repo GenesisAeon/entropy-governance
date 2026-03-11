@@ -8,7 +8,7 @@ authors = [{ name = "GenesisAeon Team", email = "team@genesisaeon.org" }]
 requires-python = ">=3.11"
 keywords = ["entropy", "governance", "physics", "duality", "sympy", "tesseract"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Environment :: Console",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
@@ -45,6 +45,7 @@ eg = "entropy_governance.cli:app"
 [project.urls]
 Repository = "https://github.com/GenesisAeon/entropy-governance"
 Issues = "https://github.com/GenesisAeon/entropy-governance/issues"
+Changelog = "https://github.com/GenesisAeon/entropy-governance/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["hatchling"]
