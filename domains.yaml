@@ -1,0 +1,11 @@
+domains:
+  governance:
+    S_A: 0.618
+    S_V: 1.618
+    crep_baseline: 0.5
+    duality_alpha: 0.5
+
+metadata:
+  project: entropy-governance
+  version: "0.1.0"
+  description: Default entropy-table export for the governance domain

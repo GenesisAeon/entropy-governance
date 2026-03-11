@@ -1,101 +1,119 @@
-"""Tests for the CLI commands."""
+"""Tests for entropy_governance.cli."""
 
-from pathlib import Path
+from __future__ import annotations
 
+import yaml
 from typer.testing import CliRunner
 
-from diamond_setup.cli import app
-from diamond_setup.templates import REGISTRY
+from entropy_governance import __version__
+from entropy_governance.cli import app
 
 runner = CliRunner()
 
 
-def test_version():
-    result = runner.invoke(app, ["version"])
-    assert result.exit_code == 0
-    assert "1.0.0" in result.output
+class TestVersion:
+    def test_exit_code(self):
+        result = runner.invoke(app, ["version"])
+        assert result.exit_code == 0
+
+    def test_version_string(self):
+        result = runner.invoke(app, ["version"])
+        assert __version__ in result.output
 
 
-def test_list_templates():
-    result = runner.invoke(app, ["list-templates"])
-    assert result.exit_code == 0
-    for name in REGISTRY:
-        assert name in result.output
+class TestEntropyPrice:
+    def test_basic(self):
+        result = runner.invoke(app, ["entropy-price", "2.0", "1.0"])
+        assert result.exit_code == 0
+        assert "2.000000" in result.output
+
+    def test_kappa_option(self):
+        result = runner.invoke(app, ["entropy-price", "4.0", "2.0", "--kappa", "0.5"])
+        assert result.exit_code == 0
+        assert "1.000000" in result.output
+
+    def test_kappa_short(self):
+        result = runner.invoke(app, ["entropy-price", "4.0", "2.0", "-k", "0.5"])
+        assert result.exit_code == 0
+
+    def test_invalid_delta_t(self):
+        result = runner.invoke(app, ["entropy-price", "1.0", "0.0"])
+        assert result.exit_code != 0
+
+    def test_negative_delta_t(self):
+        result = runner.invoke(app, ["entropy-price", "1.0", "-1.0"])
+        assert result.exit_code != 0
 
 
-def test_scaffold_minimal(tmp_path):
-    result = runner.invoke(app, ["scaffold", "hello-world", "--output-dir", str(tmp_path)])
-    assert result.exit_code == 0, result.output
-    assert (tmp_path / "hello-world" / "pyproject.toml").exists()
+class TestGovernanceSim:
+    def test_default(self):
+        result = runner.invoke(app, ["governance-sim"])
+        assert result.exit_code == 0
+        assert "CREP" in result.output
+
+    def test_custom_steps(self):
+        result = runner.invoke(app, ["governance-sim", "--steps", "50"])
+        assert result.exit_code == 0
+
+    def test_custom_s_max(self):
+        result = runner.invoke(app, ["governance-sim", "--s-max", "5.0"])
+        assert result.exit_code == 0
+
+    def test_custom_dt(self):
+        result = runner.invoke(app, ["governance-sim", "--dt", "0.5"])
+        assert result.exit_code == 0
+
+    def test_tesseract_slices_shown(self):
+        result = runner.invoke(app, ["governance-sim"])
+        assert "Tesseract" in result.output
 
 
-def test_scaffold_genesis(tmp_path):
-    result = runner.invoke(
-        app,
-        ["scaffold", "my-genesis", "--template", "genesis", "--output-dir", str(tmp_path)],
-    )
-    assert result.exit_code == 0, result.output
-    assert (tmp_path / "my-genesis" / "domains.yaml").exists()
+class TestDuality:
+    def test_basic(self):
+        result = runner.invoke(app, ["duality", "2.0", "2.718281828"])
+        assert result.exit_code == 0
+        assert "D = " in result.output
+
+    def test_alpha_one(self):
+        result = runner.invoke(app, ["duality", "3.0", "1.0", "--alpha", "1.0"])
+        assert result.exit_code == 0
+        assert "3.000000" in result.output
+
+    def test_alpha_short(self):
+        result = runner.invoke(app, ["duality", "2.0", "1.0", "-a", "0.0"])
+        assert result.exit_code == 0
+
+    def test_invalid_volume(self):
+        result = runner.invoke(app, ["duality", "1.0", "0.0"])
+        assert result.exit_code != 0
+
+    def test_invalid_alpha(self):
+        result = runner.invoke(app, ["duality", "1.0", "1.0", "--alpha", "2.0"])
+        assert result.exit_code != 0
 
 
-def test_scaffold_unknown_template():
-    result = runner.invoke(app, ["scaffold", "x", "--template", "nonexistent"])
-    assert result.exit_code != 0
-    assert "Unknown template" in result.output
+class TestTableExport:
+    def test_custom_output(self, tmp_path):
+        out = tmp_path / "custom.yaml"
+        result = runner.invoke(app, ["table-export", "--output", str(out)])
+        assert result.exit_code == 0
+        assert out.exists()
 
+    def test_yaml_content(self, tmp_path):
+        out = tmp_path / "export.yaml"
+        runner.invoke(app, ["table-export", "--output", str(out)])
+        data = yaml.safe_load(out.read_text())
+        assert "S_A" in data["domains"]["governance"]
+        assert "S_V" in data["domains"]["governance"]
 
-def test_scaffold_existing_dir(tmp_path):
-    (tmp_path / "existing-proj").mkdir()
-    result = runner.invoke(app, ["scaffold", "existing-proj", "--output-dir", str(tmp_path)])
-    assert result.exit_code != 0
-    assert "already" in result.output and "exists" in result.output
+    def test_custom_domain(self, tmp_path):
+        out = tmp_path / "export.yaml"
+        result = runner.invoke(app, ["table-export", "--output", str(out), "--domain", "physics"])
+        assert result.exit_code == 0
+        data = yaml.safe_load(out.read_text())
+        assert "physics" in data["domains"]
 
-
-def test_scaffold_dry_run_no_files(tmp_path):
-    result = runner.invoke(
-        app, ["scaffold", "dry-proj", "--output-dir", str(tmp_path), "--dry-run"]
-    )
-    assert result.exit_code == 0
-    assert "Dry run" in result.output
-    assert not (tmp_path / "dry-proj").exists()
-
-
-def test_scaffold_with_overrides(tmp_path):
-    result = runner.invoke(
-        app,
-        [
-            "scaffold",
-            "custom-proj",
-            "--output-dir",
-            str(tmp_path),
-            "--author",
-            "Test Author",
-            "--description",
-            "A test project",
-        ],
-    )
-    assert result.exit_code == 0, result.output
-    pyproject = (tmp_path / "custom-proj" / "pyproject.toml").read_text()
-    assert "Test Author" in pyproject
-    assert "A test project" in pyproject
-
-
-def test_validate_current_project():
-    """Running validate on diamond-setup's own root should pass."""
-    # Find the repo root (parent of tests/)
-    repo_root = Path(__file__).parent.parent
-    result = runner.invoke(app, ["validate", str(repo_root)])
-    assert result.exit_code == 0, result.output
-    assert "passed" in result.output.lower() or "✔" in result.output
-
-
-def test_validate_missing_pyproject(tmp_path):
-    """A directory without pyproject.toml should fail validation."""
-    result = runner.invoke(app, ["validate", str(tmp_path)])
-    assert result.exit_code != 0
-    assert "error" in result.output.lower() or "✘" in result.output
-
-
-def test_validate_nonexistent_path():
-    result = runner.invoke(app, ["validate", "/nonexistent/path/xyz"])
-    assert result.exit_code != 0
+    def test_output_message(self, tmp_path):
+        out = tmp_path / "msg.yaml"
+        result = runner.invoke(app, ["table-export", "--output", str(out)])
+        assert "Exported" in result.output
