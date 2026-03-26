@@ -1,4 +1,4 @@
-﻿[project]
+[project]
 name = "entropy-governance"
 version = "0.3.1"
 description = "Entropy-Governance Duality framework: SâˆA (action-governed) vs SâˆV (volume-governed), entropic pricing, CREP and Tesseract time-slices."
