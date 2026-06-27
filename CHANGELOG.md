@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.0] — 2026
+
+### Added
+
+- Standardized GenesisAeon ecosystem release tooling: `.zenodo.json`,
+  `RELEASE_GUIDE.md`, `CONTRIBUTING.md`, issue/PR templates.
+
+### Changed
+
+- Project metadata (`pyproject.toml`) normalized for the ecosystem-wide
+  v1.0.0 milestone: version bumped to `1.0.0`, `implosive-genesis`
+  dependency pin raised to `>=1.0.0` to match its released version.
+- **License changed to dual-licensed**: source code is now licensed under
+  GPL-3.0-or-later (`LICENSE-CODE`), documentation under CC BY 4.0
+  (`LICENSE-DOCS`). Previously the whole repository was MIT-licensed.
+- CI: removed Python 3.10 from the test matrix (package requires
+  `>=3.11`), added `mypy` to the `dev` extra, and fixed the docs job to
+  install the `docs` extra instead of `dev`.
+
+---
+
 ## [0.1.0] — 2026-03-11
 
 ### Added

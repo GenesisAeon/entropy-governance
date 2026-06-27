@@ -2,13 +2,15 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "entropy-governance: Entropy-Governance Duality"
-version: 0.1.0
+version: 1.0.0
 date-released: "2026-03-11"
 authors:
   - name: "GenesisAeon Team"
     email: team@genesisaeon.org
 repository-code: "https://github.com/GenesisAeon/entropy-governance"
-license: MIT
+license:
+  - GPL-3.0-or-later
+  - CC-BY-4.0
 doi: 10.5281/zenodo.18962979
 abstract: >
   Entropy-Governance Duality framework: S∝A (action-governed) vs S∝V
