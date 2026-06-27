@@ -14,8 +14,8 @@ import numpy as np
 # ---------------------------------------------------------------------------
 
 try:
-    from implosive_genesis.chronology import (
-        ChronologyValidator as _ChronologyValidator,  # type: ignore[import-not-found]
+    from implosive_genesis.chronology import (  # type: ignore[import-not-found]
+        ChronologyValidator as _ChronologyValidator,
     )
 
     _HAS_IMPLOSIVE_GENESIS = True

@@ -6,7 +6,8 @@ Direct bridge to `entropy-table` and optional fractal integration with `implosiv
 [![CI](https://github.com/GenesisAeon/entropy-governance/actions/workflows/ci.yml/badge.svg)](https://github.com/GenesisAeon/entropy-governance/actions/workflows/ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-98%25-brightgreen)](https://github.com/GenesisAeon/entropy-governance/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: GPL v3+](https://img.shields.io/badge/Code-GPLv3--or--later-blue.svg)](LICENSE-CODE)
+[![Docs License: CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey.svg)](LICENSE-DOCS)
 [![PyPI](https://img.shields.io/pypi/v/entropy-governance)](https://pypi.org/project/entropy-governance/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18962979.svg)](https://doi.org/10.5281/zenodo.18962979)
 
@@ -134,6 +135,14 @@ Zenodo. https://doi.org/10.5281/zenodo.18962979
 > Zenodo–GitHub integration is enabled for this repo.
 
 ---
+
+## License
+
+This repository is **dual-licensed**:
+- **Code** (`src/`, `tests/`, etc.) — [GNU GPL v3.0-or-later](LICENSE-CODE)
+- **Documentation** (`docs/`, this README) — [CC BY 4.0](LICENSE-DOCS)
+
+See [LICENSE](LICENSE) for details.
 
 ## Changelog
 
