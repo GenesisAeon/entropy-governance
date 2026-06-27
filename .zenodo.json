@@ -1,0 +1,33 @@
+{
+  "title": "entropy-governance — P-GOV-1: Entropy-Governance Duality framework: governance / entropy-based ethics gate",
+  "description": "<p>Entropy-Governance Duality framework: governance / entropy-based ethics gate — S∝A (action-governed) vs S∝V (volume-governed), entropic pricing, CREP and Tesseract time-slices.</p><p>Part of the <strong>GenesisAeon</strong> ecosystem (P-GOV-1, domain: governance). </p><p>See <a href=\"https://github.com/GenesisAeon/entropy-governance\">github.com/GenesisAeon/entropy-governance</a> for source, documentation, and reproducibility notebooks.</p>",
+  "creators": [
+    {
+      "name": "Römer, Johann",
+      "affiliation": "Independent Researcher / MOR Research Collective"
+    }
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "GenesisAeon",
+    "P-GOV-1",
+    "governance",
+    "UTAC",
+    "CREP",
+    "open science"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.19645351",
+      "relation": "isPartOf",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    }
+  ],
+  "version": "1.0.0",
+  "communities": [
+    { "identifier": "genesisaeon" }
+  ]
+}

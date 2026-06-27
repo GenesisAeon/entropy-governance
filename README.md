@@ -108,17 +108,30 @@ uv run pytest          # runs with coverage report
 uv run ruff check .
 ```
 
+## Role in the GenesisAeon Ecosystem
+
+`entropy-governance` is **P-GOV-1** in the GenesisAeon ecosystem, in the
+**governance** domain — it provides the entropy-based ethics gate that
+downstream packages (`medium-modulation`, `cosmic-moment`, `fieldtheory`,
+`sigillin`, `utac-core`, and the higher-tier governance and orchestration
+layers) build on for CREP-based decision evaluation.
+
 ## Citation
 
 If you use entropy-governance in academic work, please cite:
 
 ```
-GenesisAeon Team. (2026). entropy-governance: Entropy-Governance Duality (v0.1.0) [Software].
+GenesisAeon Team. (2026). entropy-governance: Entropy-Governance Duality (v1.0.0) [Software].
 Zenodo. https://doi.org/10.5281/zenodo.18962979
 ```
 
 > **DOI**: 10.5281/zenodo.18962979
-> **PyPI**: `pip install entropy-governance==0.1.0`
+> **PyPI**: `pip install entropy-governance==1.0.0`
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
+
+> DOI will be assigned automatically on first GitHub Release once
+> Zenodo–GitHub integration is enabled for this repo.
 
 ---
 

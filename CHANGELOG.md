@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.0] — 2026
+
+### Added
+
+- Standardized GenesisAeon ecosystem release tooling: `.zenodo.json`,
+  `RELEASE_GUIDE.md`, `CONTRIBUTING.md`, issue/PR templates.
+
+### Changed
+
+- Project metadata (`pyproject.toml`) normalized for the ecosystem-wide
+  v1.0.0 milestone: version bumped to `1.0.0`, `implosive-genesis`
+  dependency pin raised to `>=1.0.0` to match its released version.
+
+---
+
 ## [0.1.0] — 2026-03-11
 
 ### Added

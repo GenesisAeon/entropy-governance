@@ -1,7 +1,7 @@
 [project]
 name = "entropy-governance"
-version = "0.3.1"
-description = "Entropy-Governance Duality framework: SâˆA (action-governed) vs SâˆV (volume-governed), entropic pricing, CREP and Tesseract time-slices."
+version = "1.0.0"
+description = "Entropy-Governance Duality framework: governance / entropy-based ethics gate — S∝A (action-governed) vs S∝V (volume-governed), entropic pricing, CREP and Tesseract time-slices."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "GenesisAeon Team", email = "team@genesisaeon.org" }]
@@ -26,7 +26,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-genesis = ["implosive-genesis>=0.4.0"]
+genesis = ["implosive-genesis>=1.0.0"]
 dev = [
     "ruff>=0.6.0",
     "pre-commit>=3.7.0",
